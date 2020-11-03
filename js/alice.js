@@ -72,10 +72,12 @@ function callAction() {
     // pc = new RTCPeerConnection();
     localStream.getTracks().forEach(track => pc.addTrack(track, localStream));
     pc.createOffer(offerOptions).then(function (offer) {
+        console.log('alice offer', offer)
         pc.setLocalDescription(offer);
-        socket.emit('signal', offer);
+        socket.emit('alice signal', offer);
     });
     pc.addEventListener('icecandidate', function (event) {
+        console.log('alice icecandidate', event.candidate)
         var iceCandidate = event.candidate;
         if (iceCandidate) {
             socket.emit('ice', iceCandidate);
@@ -91,5 +93,4 @@ function hangupAction() {
     hangupButton.disabled = true;
     callButton.disabled = true;
     startButton.disabled = false;
-
 }

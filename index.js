@@ -2,9 +2,20 @@
 
 var express = require('express');
 var app = express();
+var fs = require('fs');
 
-var http  = require('http').createServer(app);
-var io = require('socket.io')(http);
+var key = fs.readFileSync('private.key');
+var cert = fs.readFileSync('mydomain.crt');
+
+var options = {
+    key: key,
+    cert: cert
+};
+
+// var http  = require('http').createServer(app);
+var https  = require('https').createServer(options, app);
+// var io = require('socket.io')(http);
+var io = require('socket.io')(https);
 
 app.use('/css',express.static('css'));
 app.use('/js',express.static('js'));
@@ -50,10 +61,10 @@ io.on('connection',function(socket){
     });
 });
 
-var server = http.listen(8080,function(){
+// var server = http.listen(8080,function(){
+var server = https.listen(8080,function(){
     var host = server.address().address;
     var port = server.address().port;
     console.log(server.address())
-    console.log('??', host, port)
     console.log(`listening on:http://${host}:${port}`);
 });

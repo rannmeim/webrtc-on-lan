@@ -22,11 +22,13 @@ socket.on('signal', function (message) {
     pc = new RTCPeerConnection(config);
     pc.setRemoteDescription(new RTCSessionDescription(message));
     pc.createAnswer().then(function (answer) {
+        console.log('bob offer', offer)
         pc.setLocalDescription(answer);
         socket.emit('signal', answer);
     });
 
     pc.addEventListener('icecandidate', function (event) {
+        console.log('bob icecandidate', event.candidate)
         var iceCandidate = event.candidate;
         if (iceCandidate) {
             socket.emit('ice', iceCandidate);
@@ -34,6 +36,7 @@ socket.on('signal', function (message) {
     });
 
     pc.addEventListener('addstream', function (event) {
+        console.log('bob addstream', event)
         remoteVideo.srcObject = event.stream;
     });
 });
