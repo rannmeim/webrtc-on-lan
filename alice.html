@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>alice</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1>ailce</h1>
+            <hr>
+            <div class="video_container" align="center">
+                <video id="local_video"  autoplay muted></video>
+            </div>
+            <hr>
+            <button id="startButton">获取本地视频</button>
+            <button id="callButton">呼叫bob</button>
+            <button id="hangupButton">挂断</button>
+            <script src="/socket.io/socket.io.js"></script>
+            <!-- <script src="http://localhost:8080/socket.io/socket.io.js"></script> -->
+            <script src="http://localhost:8080/socket.io/socket.io.js"></script>
+            <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+            <script src="js/alice.js"></script>
+        </div>
+    </body>
+</html>

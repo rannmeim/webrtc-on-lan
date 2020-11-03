@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>对方的视频</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <div class="container">
+            <h1>对方的视频</h1>
+            <hr>
+            <div class="video_container" align="center">
+                <video id="remote_video" controls autoplay></video>
+            </div>
+            <hr>
+            <script src="/socket.io/socket.io.js"></script>
+            <!-- <script src="http://localhost:8080/socket.io/socket.io.js"></script> -->
+            <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+            <script src="js/bob.js"></script>
+        </div>
+    </body>
+</html>
